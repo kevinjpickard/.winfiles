@@ -1,3 +1,13 @@
+# Check to see if we are currently running "as Administrator"
+if (!(Verify-Elevated)) {
+   $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
+   $newProcess.Arguments = $myInvocation.MyCommand.Definition;
+   $newProcess.Verb = "runas";
+   [System.Diagnostics.Process]::Start($newProcess);
+
+   exit
+}
+
 ## Dependencies
 # Update Help for Modules
 Update-Help -Force
@@ -56,4 +66,11 @@ cinst virtualbox
 cinst vlc
 cinst winscp
 
+
+## Create scratch dir
+mkdir C:\scratch
+cd C:\scratch
+curl https://raw.githubusercontent.com/kevinjpickard/.winfiles/master/settings.ps1 -UseBasicParsing -o settings.ps1
+
+# Apply the settings
 .\settings.ps1
