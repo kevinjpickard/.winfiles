@@ -25,7 +25,7 @@ choco feature enable -n=allowGlobalConfirmation
 cinst git
 
 # Clone winfiles
-git clone https://github.com/kevinjpickard/.winfiles.git $HOME/.winfiles
+"C:\Program Files\Git\cmd\git.exe" clone https://github.com/kevinjpickard/.winfiles.git $HOME/.winfiles
 
 # Install all packages from packages.config
 choco install $HOME/.winfiles/packages.config
