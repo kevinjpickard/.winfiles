@@ -21,8 +21,11 @@ Get-PackageProvider NuGet -Force
 iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 choco feature enable -n=allowGlobalConfirmation
 
+# Clone winfiles
+git clone https://github.com/kevinjpickard/.winfiles.git $HOME/.winfiles
+
 # Install all packages from packages.config
-choco install packages.config
+choco install $HOME/.winfiles/packages.config
 
 # Reload profile for new tools and update $PATH
 refreshenv
