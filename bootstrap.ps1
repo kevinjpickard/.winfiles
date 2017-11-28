@@ -1,5 +1,7 @@
+$IsElevated = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+
 # Check to see if we are currently running "as Administrator"
-if (!(Verify-Elevated)) {
+if (!($IsElevated)) {
    $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
    $newProcess.Arguments = $myInvocation.MyCommand.Definition;
    $newProcess.Verb = "runas";
@@ -10,7 +12,7 @@ if (!(Verify-Elevated)) {
 
 ## Dependencies
 # Update Help for Modules
-Update-Help -Force
+$helpJob = Start-Job -ScriptBlock {Update-Help -Force}
 
 ### Package Providers
 Get-PackageProvider NuGet -Force
