@@ -14,4 +14,12 @@ function remove-alias {
 	remove-item alias:\$alias
 }
 
-Set-Variable $env:path "$env:path;C:\tools\cmder;C:\tools\neovim;C:\Users\Kevin Pickard\AppData\Roaming\npm"
+#$env:path += ";C:\tools\cmder;C:\tools\neovim\Neovim\bin;$home\AppData\Roaming\npm"
+
+function nvim {
+	C:\tools\neovim\Neovim\bin\nvim.exe
+}
+
+function subl { 
+	& "${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args 
+}
