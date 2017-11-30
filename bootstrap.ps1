@@ -11,21 +11,26 @@ if (!($IsElevated)) {
 }
 
 ## Dependencies
-# Update Help for Modules
+# Update Help for Modules, but do it in the background because it can take a while
 $helpJob = Start-Job -ScriptBlock {Update-Help -Force}
 
 ### Package Providers
 Get-PackageProvider NuGet -Force
 
 ### Chocolatey
+Write-Output "Installing chocolatey..."
 iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 choco feature enable -n=allowGlobalConfirmation
 
 # Install git
 cinst git
+refreshenv
 
 # Clone winfiles
-& "C:\Program Files\Git\cmd\git.exe clone https://github.com/kevinjpickard/.winfiles.git $HOME/.winfiles"
+git clone https://github.com/kevinjpickard/.winfiles.git "$HOME/.winfiles"
+#& "C:\Program Files\Git\cmd\git.exe clone https://github.com/kevinjpickard/.winfiles.git $HOME/.winfiles"
+# Symlink powershell profile
+New-Item -ItemType SymbolicLink -Path "$HOME\Documents\WindowsPowerShell" -Name "profile.ps1" -Value "$HOME\.winfiles\profile.ps1"
 
 # Install all packages from packages.config
 choco install $HOME/.winfiles/packages.config
@@ -33,6 +38,7 @@ choco install $HOME/.winfiles/packages.config
 # Reload profile for new tools and update $PATH
 refreshenv
 
+Write-Output "Installing Node tools..."
 npm install -g azure-cli
 npm install -g babel-cli
 npm install -g bower
@@ -47,10 +53,6 @@ npm install -g node-inspector
 npm install -g node-sass
 npm install -g yo
 
-## Create scratch dir
-mkdir C:\scratch
-cd C:\scratch
-curl https://raw.githubusercontent.com/kevinjpickard/.winfiles/master/settings.ps1 -UseBasicParsing -o settings.ps1
-
 # Apply the settings
-.\settings.ps1
+Write-Output "Updating settings..."
+$HOME/.winfiles/settings.ps1
