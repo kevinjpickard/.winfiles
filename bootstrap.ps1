@@ -34,7 +34,7 @@ git clone https://github.com/kevinjpickard/.winfiles.git "$HOME\.winfiles"
 New-Item -ItemType SymbolicLink -Path "$HOME\Documents\WindowsPowerShell" -Name "profile.ps1" -Value "$HOME\.winfiles\profile.ps1"
 
 # Install all packages from packages.config
-choco install $HOME/.winfiles/packages.config
+choco install "$HOME\.winfiles\packages.config"
 
 # Reload profile for new tools and update $PATH
 powershell.exe
