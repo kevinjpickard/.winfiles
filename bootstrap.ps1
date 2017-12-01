@@ -24,11 +24,12 @@ choco feature enable -n=allowGlobalConfirmation
 
 # Install git
 cinst git
-refreshenv
+# So I'm not sure why, but simply sourcing my Profile doesn't refresh my path with the chocolately additions, apparently chocolately sets it somewhere else.
+# Anyway, that means that the only way I know how to get the updates to my path is to start a new P$ session. Hence this:
+powershell.exe
 
 # Clone winfiles
-git clone https://github.com/kevinjpickard/.winfiles.git "$HOME/.winfiles"
-#& "C:\Program Files\Git\cmd\git.exe clone https://github.com/kevinjpickard/.winfiles.git $HOME/.winfiles"
+git clone https://github.com/kevinjpickard/.winfiles.git "$HOME\.winfiles"
 # Symlink powershell profile
 New-Item -ItemType SymbolicLink -Path "$HOME\Documents\WindowsPowerShell" -Name "profile.ps1" -Value "$HOME\.winfiles\profile.ps1"
 
