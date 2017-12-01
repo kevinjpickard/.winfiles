@@ -37,7 +37,7 @@ New-Item -ItemType SymbolicLink -Path "$HOME\Documents\WindowsPowerShell" -Name 
 choco install $HOME/.winfiles/packages.config
 
 # Reload profile for new tools and update $PATH
-refreshenv
+powershell.exe
 
 Write-Output "Installing Node tools..."
 npm install -g azure-cli
