@@ -56,4 +56,4 @@ npm install -g yo
 
 # Apply the settings
 Write-Output "Updating settings..."
-$HOME/.winfiles/settings.ps1
+"$HOME\.winfiles\settings.ps1"
