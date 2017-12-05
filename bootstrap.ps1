@@ -25,11 +25,8 @@ choco feature enable -n=allowGlobalConfirmation
 # Install git
 cinst git
 
-# Get path changes
-refreshenv
-
 # Clone winfiles
-git clone https://github.com/kevinjpickard/.winfiles.git "$HOME\.winfiles"
+& "C:\Program Files\git\bin\git.exe" clone https://github.com/kevinjpickard/.winfiles.git "$HOME\.winfiles"
 # Symlink powershell profile
 New-Item -ItemType SymbolicLink "$profile" -Value "$HOME\.winfiles\Microsoft.PowerShell_profile.ps1"
 New-Item -ItemType SymbolicLink -Path "$HOME\Documents\WindowsPowerShell" -Name "profile.ps1" -Value "$HOME\.winfiles\profile.ps1"
@@ -38,6 +35,7 @@ New-Item -ItemType SymbolicLink -Path "$HOME\Documents\WindowsPowerShell" -Name 
 choco install "$HOME\.winfiles\packages.config"
 
 # Reload profile for new tools and update $PATH
+. $profile
 refreshenv
 
 Write-Output "Installing Node tools..."
