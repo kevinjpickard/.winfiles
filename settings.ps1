@@ -387,6 +387,9 @@ Set-ItemProperty $_ "ColorTable14"         $(Convert-ConsoleColor "#fad07a") # Y
 Set-ItemProperty $_ "ColorTable15"         $(Convert-ConsoleColor "#e8e8d3") # White (F)
 }
 
+# Dark App Theme
+New-ItemProperty 'HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name "AppsUseLightTheme" -Value 0 -PropertyType 'DWord'
+
 # Remove property overrides from PowerShell shortcuts
 Reset-AllPowerShellShortcuts
 
