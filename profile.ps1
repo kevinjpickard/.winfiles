@@ -17,7 +17,10 @@ function remove-alias {
 #$env:path += ";C:\tools\cmder;C:\tools\neovim\Neovim\bin;$home\AppData\Roaming\npm"
 
 function nvim {
-	C:\tools\neovim\Neovim\bin\nvim.exe
+	param(
+		$file
+	)
+	C:\tools\neovim\Neovim\bin\nvim.exe $file
 }
 
 function subl { 
