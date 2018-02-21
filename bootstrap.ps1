@@ -30,6 +30,9 @@ cinst git
 # Symlink powershell profile
 New-Item -ItemType SymbolicLink "$profile" -Value "$HOME\.winfiles\Microsoft.PowerShell_profile.ps1"
 New-Item -ItemType SymbolicLink -Path "$HOME\Documents\WindowsPowerShell" -Name "profile.ps1" -Value "$HOME\.winfiles\profile.ps1"
+New-Item -ItemType SymbolicLink -Path "$HOME" -Name ".gitconfig" -Value "$HOME\.winfiles\.gitconfig"
+New-Item -ItemType SymbolicLink -Path "$HOME" -Name ".hyper.js" -Value "$HOME\.winfiles\.hyper.js"
+New-Item -ItemType SymbolicLink -Path "$HOME\.config\nvim" -Name "init.vim" -Value "$HOME\.winfiles\init.vim"
 
 # Install all packages from packages.config
 choco install "$HOME\.winfiles\packages.config"

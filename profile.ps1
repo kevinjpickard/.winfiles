@@ -26,3 +26,5 @@ function nvim {
 function subl { 
 	& "${Env:ProgramFiles}\Sublime Text 3\sublime_text.exe" $args 
 }
+
+$env:VIRTUAL_ENV_DISABLE_PROMPT=1
